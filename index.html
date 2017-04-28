@@ -1,0 +1,53 @@
+<html>
+
+<head>
+
+<style>
+body{margin:0; padding:0;}
+</style>
+    
+</head>
+
+<body>
+<script>
+var windowW = window.document.body.offsetWidth;
+var windowH = window.document.body.offsetHeight;
+
+var $_GET = (function(){
+    var url = window.document.location.href.toString();
+    var u = url.split("?");
+    if(typeof(u[1]) == "string"){
+        u = u[1].split("&");
+        var get = {};
+        for(var i in u){
+            var j = u[i].split("=");
+            get[j[0]] = j[1];
+        }
+        return get;
+    } else {
+        return {};
+    }
+})();
+
+//var url = $_GET["u"];
+
+var url="http://172.16.12.2:8888/"
+
+var towrite = '<iframe src="'+url+'" id="contentframe" scrolling="no" onLoad="changeFrameHeight();" frameborder="0"></iframe>'
+
+document.write(towrite);
+
+function changeFrameHeight(){
+    var ifm= document.getElementById("contentframe"); 
+    ifm.height=document.documentElement.clientHeight;
+    ifm.width=document.documentElement.clientWidth;
+}
+window.onresize=function(){  
+     changeFrameHeight();  
+} 
+
+</script>
+
+</body>
+
+</html>
