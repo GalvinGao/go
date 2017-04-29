@@ -10,8 +10,8 @@ body{margin:0; padding:0;}
 
 <body>
 <script>
-var windowW = window.document.body.offsetWidth;
-var windowH = window.document.body.offsetHeight;
+var windowW = document.documentElement.clientWidth;
+var windowH = document.documentElement.clientHeight;
 
 var $_GET = (function(){
     var url = window.document.location.href.toString();
@@ -33,7 +33,7 @@ var url = $_GET["u"];
 
 //var url="http://172.16.12.2:8888/"
 
-var towrite = '<iframe src="'+url+'" id="contentframe" onLoad="changeFrameHeight();" frameborder="0"></iframe>'
+var towrite = '<iframe src="'+url+'" id="contentframe" onLoad="changeFrameHeight();" scrolling="no" frameborder="0" width="'+windowW+'" height="'+windowH+'"></iframe>'
 
 document.write(towrite);
 
@@ -43,7 +43,8 @@ function changeFrameHeight(){
     ifm.width=document.documentElement.clientWidth;
 }
 window.onresize=function(){  
-     changeFrameHeight();  
+    changeFrameHeight(); 
+    console.log(document.documentElement.clientWidth + ", " + document.documentElement.clientHeight + ", " + window.document.body.offsetWidth + ", " + window.document.body.offsetHeight)
 } 
 
 </script>
